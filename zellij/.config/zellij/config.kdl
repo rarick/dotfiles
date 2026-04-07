@@ -1,0 +1,29 @@
+// Zellij config — mirrors tmux workflow
+
+theme "dracula"
+default_shell "fish"
+pane_frames false
+default_layout "compact"
+
+// Copy mode uses vi keys by default
+copy_command "xclip -selection clipboard"
+scrollback_editor "nvim"
+
+// Mouse support
+mouse_mode true
+
+// 1-indexed tabs like tmux `set -g base-index 1`
+// (zellij is 1-indexed by default)
+
+keybinds {
+    // Ctrl+h/j/k/l for pane navigation (like your tmux setup)
+    // These work in normal mode
+    normal {
+        bind "Ctrl h" { MoveFocus "Left"; }
+        bind "Ctrl j" { MoveFocus "Down"; }
+        bind "Ctrl k" { MoveFocus "Up"; }
+        bind "Ctrl l" { MoveFocus "Right"; }
+        bind "Ctrl n" { GoToNextTab; }
+        bind "Ctrl p" { GoToPreviousTab; }
+    }
+}
