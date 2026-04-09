@@ -1,0 +1,47 @@
+// Default layout with zjstatus bar (dracula theme)
+layout {
+    default_tab_template {
+        children
+        pane size=1 borderless=true {
+            plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
+                format_left   "{mode} #[fg=#bd93f9,bold]{session}"
+                format_center "{tabs}"
+                format_right  "{command_git_branch} {datetime}"
+                format_space  ""
+
+                border_enabled  "false"
+
+                hide_frame_for_single_pane "true"
+
+                mode_normal        "#[bg=#bd93f9,fg=#282a36,bold] NORMAL "
+                mode_locked        "#[bg=#ff5555,fg=#282a36,bold] LOCKED "
+                mode_pane          "#[bg=#50fa7b,fg=#282a36,bold] PANE "
+                mode_tab           "#[bg=#ffb86c,fg=#282a36,bold] TAB "
+                mode_scroll        "#[bg=#8be9fd,fg=#282a36,bold] SCROLL "
+                mode_search        "#[bg=#f1fa8c,fg=#282a36,bold] SEARCH "
+                mode_enter_search  "#[bg=#f1fa8c,fg=#282a36,bold] SEARCH "
+                mode_rename_tab    "#[bg=#ffb86c,fg=#282a36,bold] RENAME "
+                mode_rename_pane   "#[bg=#50fa7b,fg=#282a36,bold] RENAME "
+                mode_resize        "#[bg=#ff79c6,fg=#282a36,bold] RESIZE "
+                mode_move          "#[bg=#ff79c6,fg=#282a36,bold] MOVE "
+                mode_session       "#[bg=#bd93f9,fg=#282a36,bold] SESSION "
+
+                tab_normal              "#[fg=#6272a4] {name} "
+                tab_normal_fullscreen   "#[fg=#6272a4] {name} [] "
+                tab_normal_sync         "#[fg=#6272a4] {name} <> "
+                tab_active              "#[fg=#f8f8f2,bold,italic] {name} "
+                tab_active_fullscreen   "#[fg=#f8f8f2,bold,italic] {name} [] "
+                tab_active_sync         "#[fg=#f8f8f2,bold,italic] {name} <> "
+
+                command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
+                command_git_branch_format      "#[fg=#ff79c6]  {stdout} "
+                command_git_branch_interval    "10"
+                command_git_branch_rendermode  "static"
+
+                datetime        "#[fg=#6272a4,bold] {format} "
+                datetime_format "%H:%M"
+                datetime_timezone "America/Los_Angeles"
+            }
+        }
+    }
+}

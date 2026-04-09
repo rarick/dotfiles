@@ -1,0 +1,41 @@
+// Zellij config
+
+theme "dracula"
+default_shell "fish"
+pane_frames false
+default_layout "default"
+
+copy_command "xclip -selection clipboard"
+scrollback_editor "nvim"
+mouse_mode true
+
+// Auto-lock when inside nvim/vim so keybindings don't conflict
+// (equivalent to the @vim_running tmux variable)
+load_plugins {
+    "https://github.com/fresh2dev/zellij-autolock/releases/latest/download/zellij-autolock.wasm" {
+        triggers "nvim|vim"
+        reaction "lock"
+        watch_triggers "nvim|vim"
+        watch_reaction "lock"
+    }
+}
+
+keybinds {
+    normal {
+        bind "Ctrl h" { MoveFocus "Left"; }
+        bind "Ctrl j" { MoveFocus "Down"; }
+        bind "Ctrl k" { MoveFocus "Up"; }
+        bind "Ctrl l" { MoveFocus "Right"; }
+        bind "Ctrl n" { GoToNextTab; }
+        bind "Ctrl p" { GoToPreviousTab; }
+    }
+
+    // When locked (inside nvim), pass through Ctrl+h/j/k/l to nvim
+    // but allow unlocking with the default unlock key
+    locked {
+        bind "Ctrl h" { MoveFocus "Left"; }
+        bind "Ctrl j" { MoveFocus "Down"; }
+        bind "Ctrl k" { MoveFocus "Up"; }
+        bind "Ctrl l" { MoveFocus "Right"; }
+    }
+}
