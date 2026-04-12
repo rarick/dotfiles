@@ -27,6 +27,3 @@ if status is-interactive
         --processes=\cx \
         --variables=\cv
 end
-
-# Machine-specific config
-test -f ~/.config/fish/conf.d/local.fish; and source ~/.config/fish/conf.d/local.fish
