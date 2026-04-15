@@ -15,7 +15,18 @@ abbr -a ds 'clear; docker ps -a'
 abbr -a xc clipcopy
 abbr -a xv clippaste
 abbr -a sbc 'source ~/.config/fish/config.fish'
-abbr -a lzg lazygit
+
+function y
+    set -l tmp (mktemp)
+    yazi --cwd-file="$tmp" $argv
+    set -l dir (cat "$tmp")
+    rm -f "$tmp"
+    if test -n "$dir" -a "$dir" != (pwd)
+        cd "$dir"
+    end
+end
+
+alias r y
 
 function cd --wraps=cd
     if test (count $argv) -eq 0
@@ -33,15 +44,5 @@ end
 function gc
     set -l msg (string join " " -- $argv)
     git commit -m "$msg"
-end
-
-function r
-    ranger --choosedir=$HOME/.rangerdir
-    if test -f $HOME/.rangerdir
-        set -l lastdir (cat $HOME/.rangerdir)
-        if test -d "$lastdir"
-            cd "$lastdir"
-        end
-    end
 end
 
