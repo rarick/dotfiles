@@ -34,6 +34,11 @@
     starpls
     vscode-langservers-extracted # html/css/json
     yaml-language-server
+
+    # Fish plugins (sourced via conf.d/nix-plugins.fish)
+    fishPlugins.z
+    fishPlugins.pure
+    fishPlugins.fzf-fish
   ];
 
   # --- XDG config files (~/.config/) ---
