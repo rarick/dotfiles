@@ -46,15 +46,25 @@
   xdg.configFile.".".source = ./dot-config;
   xdg.configFile.".".recursive = true;
 
+  # --- Tmux ---
+  programs.tmux = {
+    enable = true;
+    extraConfig = builtins.readFile ./tmux-config/tmux.conf;
+    plugins = with pkgs.tmuxPlugins; [
+      sensible
+      tmux-fzf
+      {
+        plugin = pkgs.tmuxPlugins.mkTmuxPlugin {
+          pluginName = "airline";
+          version = "local";
+          src = ./tmux-config/airline;
+        };
+      }
+    ];
+  };
+
   # --- Home directory dotfiles ---
   home.file = {
     ".inputrc".source = ./shell-config/inputrc;
-    ".tmux.conf".source = ./tmux-config/tmux.conf;
-    ".tmux/plugins/tpm".source = pkgs.fetchFromGitHub {
-      owner = "tmux-plugins";
-      repo = "tpm";
-      rev = "master";
-      sha256 = "";
-    };
   };
 }
