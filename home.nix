@@ -15,6 +15,7 @@
     btop
     delta
     fd
+    fish
     fzf
     jq
     neovim
