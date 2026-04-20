@@ -45,9 +45,15 @@
   xdg.configFile.".".source = ./dot-config;
   xdg.configFile.".".recursive = true;
 
+  # --- Tmux ---
+  programs.tmux = {
+    enable = true;
+    extraConfig = builtins.readFile ./tmux-config/tmux.conf;
+    plugins = with pkgs.tmuxPlugins; [ tpm ];
+  };
+
   # --- Home directory dotfiles ---
   home.file = {
     ".inputrc".source = ./shell-config/inputrc;
-    ".tmux.conf".source = ./tmux-config/tmux.conf;
   };
 }
