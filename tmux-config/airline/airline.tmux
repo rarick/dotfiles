@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 main() {
+  # dracula colors
   gray='#44475a'
   lightgray='#5f6a8e'
   orange='#ffb86c'
@@ -10,9 +11,9 @@ main() {
   white='#f8f8f2'
   black='#282a36'
 
-  left_sep=''
-  right_sep=''
-  right_alt_sep=''
+  left_sep=''
+  right_sep=''
+  right_alt_sep=''
   block='█'
 
   tmux set-option -g pane-border-style "fg=$lightgray"
