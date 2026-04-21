@@ -1,3 +1,6 @@
+# Preserve scrollback buffer
+alias clear 'command clear -x'
+
 # abbrs (short hand expands, shows full command in history)
 abbr -a c  clear
 abbr -a l  'clear; ls -lh'
