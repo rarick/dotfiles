@@ -23,6 +23,12 @@
     starship
     tmux
 
+    # Language runtimes (needed by LSP servers)
+    go
+    nodejs
+    python3
+    rustup
+
     # LSP servers (managed by nix instead of mason)
     bash-language-server
     dockerfile-language-server
@@ -31,7 +37,7 @@
     marksman
     typescript-language-server
     pyright
-    rust-analyzer
+
     starpls
     vscode-langservers-extracted # html/css/json
     yaml-language-server
