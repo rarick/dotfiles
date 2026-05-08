@@ -20,7 +20,6 @@
     jq
     neovim
     ripgrep
-    starship
     tmux
 
     # Language runtimes (needed by LSP servers)
