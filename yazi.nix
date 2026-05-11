@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, yaziPkg, ... }:
 
 let
   yaziPlugins = builtins.fetchGit {
@@ -14,6 +14,7 @@ let
 in {
   programs.yazi = {
     enable = true;
+    package = yaziPkg;
     enableFishIntegration = false;
 
     plugins = {

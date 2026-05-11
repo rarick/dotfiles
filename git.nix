@@ -17,6 +17,8 @@
         navigate = true;
         side-by-side = true;
         line-numbers = true;
+        dark = true;
+        syntax-theme = "Dracula";
       };
       push.default = "simple";
       color.ui = "auto";

@@ -24,6 +24,7 @@
 
     # Language runtimes (needed by LSP servers)
     go
+    jdk21_headless
     nodejs
     python3
     rustup
@@ -54,7 +55,11 @@
   # --- Tmux ---
   programs.tmux = {
     enable = true;
-    extraConfig = builtins.readFile ./tmux-config/tmux.conf;
+    extraConfig = builtins.readFile ./tmux-config/tmux.conf
+      + ''
+
+        bind "=" run-shell -b "${pkgs.tmuxPlugins.tmux-fzf}/share/tmux-plugins/tmux-fzf/scripts/clipboard.sh"
+      '';
     plugins = with pkgs.tmuxPlugins; [
       sensible
       tmux-fzf
