@@ -19,6 +19,12 @@
         line-numbers = true;
         dark = true;
         syntax-theme = "Dracula";
+        minus-style = "syntax \"#3c2a2e\"";
+        minus-emph-style = "syntax bold \"#6b2f38\"";
+        plus-style = "syntax \"#2a3c2e\"";
+        plus-emph-style = "syntax bold \"#2f6b4a\"";
+        line-numbers-minus-style = "#ff5555 dim";
+        line-numbers-plus-style = "#50fa7b dim";
       };
       push.default = "simple";
       color.ui = "auto";
