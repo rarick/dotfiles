@@ -18,6 +18,7 @@ abbr -a ds 'clear; docker ps -a'
 abbr -a xc clipcopy
 abbr -a xv clippaste
 abbr -a sbc 'source ~/.config/fish/config.fish'
+abbr -a wget 'curl -fLO --tlsv1.2'
 
 function y
     set -l tmp (mktemp)
