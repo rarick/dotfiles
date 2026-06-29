@@ -18,9 +18,11 @@
     fish
     fzf
     jq
+    jujutsu
     neovim
     ripgrep
     tmux
+    zellij
 
     # Language runtimes (needed by LSP servers)
     go
