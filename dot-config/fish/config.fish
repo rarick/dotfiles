@@ -1,6 +1,12 @@
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 
+# System paths
+fish_add_path --append /usr/local/bin
+
+# Nix
+fish_add_path --prepend /nix/var/nix/profiles/default/bin ~/.nix-profile/bin
+
 # Disable greeting
 set fish_greeting
 
