@@ -14,7 +14,7 @@
     let
       system = builtins.currentSystem;
       username = builtins.getEnv "USER";
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = import nixpkgs { inherit system; config.allowBroken = true; };
       homeDir = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
     in {
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
