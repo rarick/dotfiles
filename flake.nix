@@ -7,10 +7,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    yazi.url = "github:sxyazi/yazi";
   };
 
-  outputs = { nixpkgs, home-manager, yazi, ... }:
+  outputs = { nixpkgs, home-manager, ... }:
     let
       system = builtins.currentSystem;
       username = builtins.getEnv "USER";
@@ -20,7 +19,7 @@
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [ ./home.nix ];
-        extraSpecialArgs = { inherit username homeDir; yaziPkg = yazi.packages.${system}.default; };
+        extraSpecialArgs = { inherit username homeDir; };
       };
     };
 }

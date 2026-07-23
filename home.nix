@@ -17,6 +17,7 @@
     fd
     fish
     fzf
+    gh
     jq
     jujutsu
     neovim
