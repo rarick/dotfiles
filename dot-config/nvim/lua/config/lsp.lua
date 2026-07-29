@@ -17,6 +17,16 @@ local servers = {
   "yamlls",
 }
 
+vim.lsp.config("rust_analyzer", {
+  settings = {
+    ["rust-analyzer"] = {
+      rustc = {
+        source = "discover",
+      },
+    },
+  },
+})
+
 vim.lsp.enable(servers)
 
 -- LSP keymaps (supplement built-in grr/gri/grn/gra/grt/gO/Ctrl-S)
