@@ -27,6 +27,13 @@ vim.lsp.config("rust_analyzer", {
         autoimport = { enable = true },
         fullFunctionSignatures = { enable = true },
       },
+      imports = {
+        granularity = { group = "module" },
+        prefix = "self",
+      },
+      assist = {
+        emitMustUse = true,
+      },
     },
   },
 })
