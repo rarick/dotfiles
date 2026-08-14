@@ -51,7 +51,11 @@ require("trouble").setup({})
 
 -- Blink completion
 require("blink.cmp").setup({
-  keymap = { preset = "enter" },
+  keymap = {
+    preset = "enter",
+    ["<C-j>"] = { "select_next", "fallback" },
+    ["<C-k>"] = { "select_prev", "fallback" },
+  },
   completion = {
     documentation = { auto_show = true },
   },
