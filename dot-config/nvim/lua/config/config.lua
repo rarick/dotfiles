@@ -76,9 +76,9 @@ vim.api.nvim_create_autocmd("FileType", {
 ----------------
 -- misc
 --------
-vim.opt.showcmd = true
+vim.opt.showcmd = false
 vim.opt.wildmenu = true
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 99999
 vim.opt.undofile = true
 
 ----------------

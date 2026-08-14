@@ -22,6 +22,9 @@ vim.pack.add({
   -- Diagnostics panel
   "https://github.com/folke/trouble.nvim",
 
+  -- Key hint popup
+  "https://github.com/folke/which-key.nvim",
+
   -- LSP configs
   "https://github.com/neovim/nvim-lspconfig",
 })
@@ -48,6 +51,9 @@ require("fzf-lua").register_ui_select()
 
 -- Trouble
 require("trouble").setup({})
+
+-- Which-key (shows available keybinds after pressing a prefix)
+require("which-key").setup({})
 
 -- Blink completion
 require("blink.cmp").setup({
