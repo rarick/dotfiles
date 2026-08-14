@@ -11,8 +11,7 @@ vim.pack.add({
   "https://github.com/nvim-tree/nvim-web-devicons",
 
   -- Completion
-  "https://github.com/Saghen/blink.cmp",
-  "https://github.com/Saghen/blink.lib",
+  { src = "https://github.com/Saghen/blink.cmp", version = "v1.10.2" },
 
   -- Fuzzy finder
   "https://github.com/ibhagwan/fzf-lua",
