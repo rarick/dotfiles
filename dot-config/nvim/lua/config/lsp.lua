@@ -44,6 +44,14 @@ vim.lsp.enable(servers)
 -- LSP keymaps (supplement built-in grr/gri/grn/gra/grt/gO/Ctrl-S)
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+vim.keymap.set("n", "<leader>i", function()
+  vim.lsp.buf.code_action({
+    filter = function(action)
+      return action.title:find("Replace qualified path with")
+    end,
+    apply = true,
+  })
+end, { desc = "Replace qualified path with use" })
 
 -- Format on save + organize imports (Rust: also shortens qualified paths)
 vim.api.nvim_create_autocmd("BufWritePre", {
