@@ -37,20 +37,6 @@ if os.getenv("TMUX") then
 end
 
 ----------------
--- completion (native 0.12)
---------
-vim.o.autocomplete = true
-vim.o.completeopt = "menu,menuone,noselect"
-vim.o.pumborder = "rounded"
-
-map("i", "<C-j>", function()
-  return vim.fn.pumvisible() == 1 and "<C-n>" or "<C-j>"
-end, { expr = true, desc = "Next completion item" })
-map("i", "<C-k>", function()
-  return vim.fn.pumvisible() == 1 and "<C-p>" or "<C-k>"
-end, { expr = true, desc = "Prev completion item" })
-
-----------------
 -- search
 --------
 vim.opt.showmatch = true

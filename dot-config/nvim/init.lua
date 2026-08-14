@@ -10,6 +10,10 @@ vim.pack.add({
   "https://github.com/nvim-lualine/lualine.nvim",
   "https://github.com/nvim-tree/nvim-web-devicons",
 
+  -- Completion
+  "https://github.com/Saghen/blink.cmp",
+  "https://github.com/Saghen/blink.lib",
+
   -- Fuzzy finder
   "https://github.com/ibhagwan/fzf-lua",
 
@@ -44,6 +48,18 @@ require("fzf-lua").setup({
 
 -- Trouble
 require("trouble").setup({})
+
+-- Blink completion
+require("blink.cmp").setup({
+  keymap = { preset = "enter" },
+  completion = {
+    documentation = { auto_show = true },
+  },
+  sources = {
+    default = { "lsp", "path", "snippets", "buffer" },
+  },
+  fuzzy = { implementation = "prefer_rust_with_warning" },
+})
 
 -- Fzf keymaps
 local map = vim.keymap.set
