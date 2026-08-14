@@ -23,6 +23,10 @@ vim.lsp.config("rust_analyzer", {
       rustc = {
         source = "discover",
       },
+      completion = {
+        autoimport = { enable = true },
+        fullFunctionSignatures = { enable = true },
+      },
     },
   },
 })
