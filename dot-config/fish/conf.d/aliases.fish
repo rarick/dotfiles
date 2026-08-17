@@ -19,7 +19,14 @@ abbr -a xc clipcopy
 abbr -a xv clippaste
 abbr -a sbc 'source ~/.config/fish/config.fish'
 abbr -a ca cargo
-abbr -a wget 'curl -fLO --tlsv1.2'
+abbr -a wget __wget_safe
+
+function __wget_safe
+    for url in $argv
+        set -l name (basename (string split '?' $url)[1])
+        curl -fL --tlsv1.2 -o $name $url
+    end
+end
 
 function y
     set -l tmp (mktemp)
