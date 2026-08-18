@@ -5,6 +5,9 @@ local function o(extra)
   return vim.tbl_extend("force", opts, extra or {})
 end
 
+-- Disable default 's' (substitute) so we can use it as a prefix
+map("n", "s", "<Nop>", o())
+
 -- Search
 map("n", "gV", "`[v`]", o())
 map("n", "<CR>", ":nohl<CR>", o())
