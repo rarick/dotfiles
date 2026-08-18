@@ -38,3 +38,6 @@ vim.lsp.config("rust_analyzer", {
 })
 
 vim.lsp.enable(servers)
+
+-- Inlay hints (type annotations, parameter names)
+vim.lsp.inlay_hint.enable(true)
