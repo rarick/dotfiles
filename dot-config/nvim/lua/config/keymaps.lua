@@ -27,6 +27,7 @@ map("n", "st", "<cmd>FzfLua files<CR>", { desc = "Find Files" })
 map("n", "sm", "<cmd>FzfLua marks<CR>", { desc = "Marks" })
 map("n", "sf", "<cmd>FzfLua buffers<CR>", { desc = "Buffers" })
 map("n", "s/", "<cmd>FzfLua live_grep_resume<CR>", { desc = "Live Grep" })
+map("n", "ss", "<cmd>FzfLua lsp_workspace_symbols<CR>", { desc = "Workspace Symbols" })
 
 -- Trouble
 map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics" })
