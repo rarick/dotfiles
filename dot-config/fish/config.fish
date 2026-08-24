@@ -17,7 +17,7 @@ if status is-interactive
 
     fzf_configure_bindings \
         --directory=\ct\
-        --git_log=\cg \
+        --git_log=\cy \
         --git_status=\cs \
         --history=\cr \
         --processes=\cx \
