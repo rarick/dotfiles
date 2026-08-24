@@ -5,6 +5,7 @@ function fish_user_key_bindings
   for m in insert default
     bind -M $m \cj down-or-search
     bind -M $m \ck up-or-search
+    bind -M $m \cg edit_command_buffer
   end
 
   bind -M insert \co accept-autosuggestion
