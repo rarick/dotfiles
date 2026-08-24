@@ -25,6 +25,10 @@
     tmux
     zellij
 
+    # Man pages
+    man-pages
+    man-pages-posix
+
     # Language runtimes (needed by LSP servers)
     go
     jdk21_headless
