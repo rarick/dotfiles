@@ -32,6 +32,13 @@ map("n", "sf", "<cmd>FzfLua buffers<CR>", { desc = "Buffers" })
 map("n", "s/", "<cmd>FzfLua live_grep_resume<CR>", { desc = "Live Grep" })
 map("n", "ss", "<cmd>FzfLua lsp_workspace_symbols<CR>", { desc = "Workspace Symbols" })
 map("n", "sd", "<cmd>FzfLua lsp_document_symbols<CR>", { desc = "Document Symbols" })
+map("n", 's"', "<cmd>FzfLua registers<CR>", { desc = "Registers" })
+map("n", "sr", "<cmd>Yazi<CR>", { desc = "Yazi file manager" })
+
+-- Flash (jump motions)
+map({ "n", "x", "o" }, "<leader>j", function() require("flash").jump() end, { desc = "Flash jump" })
+map({ "n", "x", "o" }, "<leader>J", function() require("flash").treesitter() end, { desc = "Flash treesitter" })
+map("o", "r", function() require("flash").remote() end, { desc = "Flash remote" })
 
 -- Trouble
 map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics" })

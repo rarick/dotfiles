@@ -26,6 +26,25 @@ vim.pack.add({
 
   -- LSP configs
   "https://github.com/neovim/nvim-lspconfig",
+
+  -- Repeat plugin actions with .
+  "https://github.com/tpope/vim-repeat",
+
+  -- Surround (add/change/delete surroundings)
+  "https://github.com/kylechui/nvim-surround",
+
+  -- Jump anywhere with labels
+  "https://github.com/folke/flash.nvim",
+
+  -- Treesitter text objects (af/if = function, ac/ic = class, ]m/]c = next)
+  "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
+
+  -- Auto-close/rename HTML & JSX tags
+  "https://github.com/windwp/nvim-ts-autotag",
+
+  -- Yazi file manager integration
+  "https://github.com/nvim-lua/plenary.nvim",
+  "https://github.com/mikavilpas/yazi.nvim",
 })
 
 -- Theme
@@ -35,6 +54,10 @@ vim.cmd([[colorscheme dracula]])
 require("lualine").setup({
   options = { theme = "dracula" },
 })
+
+-- Icons (setup + mock nvim-web-devicons so fzf-lua/etc. detect them)
+require("mini.icons").setup({})
+MiniIcons.mock_nvim_web_devicons()
 
 -- Fzf-lua
 require("fzf-lua").setup({
@@ -53,6 +76,68 @@ require("trouble").setup({})
 
 -- Which-key
 require("which-key").setup({})
+
+-- Surround (ys/cs/ds)
+require("nvim-surround").setup({})
+
+-- Flash (jump motions)
+require("flash").setup({
+  modes = {
+    search = { enabled = false }, -- don't hijack / by default
+  },
+})
+
+-- Treesitter text objects
+require("nvim-treesitter-textobjects").setup()
+vim.treesitter.query.add_directive("set!", function() end, { force = true }) -- needed for built-in TS
+
+-- Text object select: af/if = function, ac/ic = class, aa/ia = parameter
+vim.keymap.set({ "x", "o" }, "af", function()
+  require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
+end, { desc = "Around function" })
+vim.keymap.set({ "x", "o" }, "if", function()
+  require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
+end, { desc = "Inner function" })
+vim.keymap.set({ "x", "o" }, "ac", function()
+  require("nvim-treesitter-textobjects.select").select_textobject("@class.outer", "textobjects")
+end, { desc = "Around class" })
+vim.keymap.set({ "x", "o" }, "ic", function()
+  require("nvim-treesitter-textobjects.select").select_textobject("@class.inner", "textobjects")
+end, { desc = "Inner class" })
+vim.keymap.set({ "x", "o" }, "aa", function()
+  require("nvim-treesitter-textobjects.select").select_textobject("@parameter.outer", "textobjects")
+end, { desc = "Around parameter" })
+vim.keymap.set({ "x", "o" }, "ia", function()
+  require("nvim-treesitter-textobjects.select").select_textobject("@parameter.inner", "textobjects")
+end, { desc = "Inner parameter" })
+
+-- Text object move: ]m/]M = next function start/end, ]c = next class
+vim.keymap.set({ "n", "x", "o" }, "]m", function()
+  require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
+end, { desc = "Next function start" })
+vim.keymap.set({ "n", "x", "o" }, "]M", function()
+  require("nvim-treesitter-textobjects.move").goto_next_end("@function.outer", "textobjects")
+end, { desc = "Next function end" })
+vim.keymap.set({ "n", "x", "o" }, "[m", function()
+  require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
+end, { desc = "Prev function start" })
+vim.keymap.set({ "n", "x", "o" }, "[M", function()
+  require("nvim-treesitter-textobjects.move").goto_previous_end("@function.outer", "textobjects")
+end, { desc = "Prev function end" })
+vim.keymap.set({ "n", "x", "o" }, "]c", function()
+  require("nvim-treesitter-textobjects.move").goto_next_start("@class.outer", "textobjects")
+end, { desc = "Next class" })
+vim.keymap.set({ "n", "x", "o" }, "[c", function()
+  require("nvim-treesitter-textobjects.move").goto_previous_start("@class.outer", "textobjects")
+end, { desc = "Prev class" })
+
+-- Auto-close/rename HTML & JSX tags
+require("nvim-ts-autotag").setup({})
+
+-- Yazi file manager
+require("yazi").setup({
+  open_for_directories = true, -- use yazi instead of netrw for directories
+})
 
 -- Blink completion
 require("blink.cmp").setup({
