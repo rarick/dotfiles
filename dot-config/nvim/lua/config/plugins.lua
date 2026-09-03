@@ -2,6 +2,9 @@ vim.pack.add({
   -- Theme
   "https://github.com/Mofiqul/dracula.nvim",
 
+  -- Icons
+  "https://github.com/echasnovski/mini.icons",
+
   -- Statusline
   "https://github.com/nvim-lualine/lualine.nvim",
   "https://github.com/nvim-tree/nvim-web-devicons",

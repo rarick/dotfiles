@@ -15,6 +15,18 @@ local servers = {
   "yamlls",
 }
 
+vim.lsp.config("lua_ls", {
+  settings = {
+    Lua = {
+      runtime = { version = "LuaJIT" },
+      workspace = {
+        library = { vim.env.VIMRUNTIME .. "/lua" },
+        checkThirdParty = false,
+      },
+    },
+  },
+})
+
 vim.lsp.config("rust_analyzer", {
   settings = {
     ["rust-analyzer"] = {
