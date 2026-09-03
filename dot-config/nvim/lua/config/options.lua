@@ -34,7 +34,7 @@ vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.wildmenu = true
 vim.opt.timeoutlen = 99999
 vim.opt.undofile = true
-vim.opt.updatetime = 300
+vim.opt.updatetime = 100
 
 -- Diagnostics
 local sev = vim.diagnostic.severity

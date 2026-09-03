@@ -137,6 +137,10 @@ require("nvim-ts-autotag").setup({})
 -- Yazi file manager
 require("yazi").setup({
   open_for_directories = true, -- use yazi instead of netrw for directories
+  keymaps = {
+    open_and_pick_window = false,
+    change_working_directory = "<c-o>",
+  },
 })
 
 -- Blink completion
