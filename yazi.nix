@@ -43,7 +43,7 @@ in {
       require("full-border"):setup()
       require("git"):setup()
       require("bookmarks"):setup({ persist = "all" })
-      require("relative-motions"):setup({ show_numbers = "relative", show_motion = true })
+      require("relative-motions"):setup({ show_motion = true })
     '';
 
     keymap = {
