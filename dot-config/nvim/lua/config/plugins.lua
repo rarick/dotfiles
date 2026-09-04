@@ -45,6 +45,9 @@ vim.pack.add({
   -- Yazi file manager integration
   "https://github.com/nvim-lua/plenary.nvim",
   "https://github.com/mikavilpas/yazi.nvim",
+
+  -- ANSI escape code rendering in buffers
+  "https://github.com/m00qek/baleia.nvim",
 })
 
 -- Theme
@@ -142,6 +145,12 @@ require("yazi").setup({
     change_working_directory = "<c-o>",
   },
 })
+
+-- Baleia (ANSI escape code rendering)
+vim.g.baleia = require("baleia").setup({})
+vim.api.nvim_create_user_command("BaleiaColorize", function()
+  vim.g.baleia.once(vim.api.nvim_get_current_buf())
+end, { bang = true })
 
 -- Blink completion
 require("blink.cmp").setup({
