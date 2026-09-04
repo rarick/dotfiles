@@ -35,6 +35,7 @@ vim.opt.wildmenu = true
 vim.opt.timeoutlen = 99999
 vim.opt.undofile = true
 vim.opt.updatetime = 100
+vim.opt.clipboard = "unnamedplus"
 
 -- Diagnostics
 local sev = vim.diagnostic.severity
