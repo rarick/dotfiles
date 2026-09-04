@@ -53,6 +53,27 @@
     fishPlugins.z
     fishPlugins.pure
     fishPlugins.fzf-fish
+
+    # Treesitter parsers (needed for textobjects, folding, highlighting)
+    (vimPlugins.nvim-treesitter.withPlugins (p: [
+      p.bash
+      p.css
+      p.dockerfile
+      p.fish
+      p.go
+      p.html
+      p.java
+      p.javascript
+      p.json
+      p.lua
+      p.nix
+      p.python
+      p.rust
+      p.toml
+      p.tsx
+      p.typescript
+      p.yaml
+    ]))
   ];
 
   # --- XDG config files (~/.config/) ---
