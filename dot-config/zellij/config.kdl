@@ -1,81 +1,27 @@
-// Zellij config — tmux-style prefix (Ctrl+b)
+// Zellij config
 
 theme "dracula"
 default_shell "fish"
 pane_frames false
 default_layout "default"
-default_mode "locked"
 
 copy_command "xclip -selection clipboard"
 scrollback_editor "nvim"
 mouse_mode true
-show_startup_tips false
-show_release_notes false
 
-keybinds clear-defaults=true {
-    // Locked is the default — all keys pass through to the terminal.
-    // Ctrl+b enters tmux mode (the "prefix").
-    locked {
-        bind "Ctrl b" { SwitchToMode "Tmux"; }
+// Auto-lock when inside nvim/vim so keybindings don't conflict
+// (equivalent to the @vim_running tmux variable)
+load_plugins {
+    "https://github.com/fresh2dev/zellij-autolock/releases/latest/download/zellij-autolock.wasm" {
+        triggers "nvim|vim"
+        reaction "lock"
+        watch_triggers "nvim|vim"
+        watch_reaction "lock"
     }
+}
 
-    tmux {
-        bind "Esc" { SwitchToMode "Locked"; }
-        bind "Ctrl b" { Write 2; SwitchToMode "Locked"; } // send literal Ctrl+b
-
-        // Splits (same as tmux)
-        bind "\"" { NewPane "Down"; SwitchToMode "Locked"; }
-        bind "%" { NewPane "Right"; SwitchToMode "Locked"; }
-
-        // Tabs (same as tmux)
-        bind "c" { NewTab; SwitchToMode "Locked"; }
-        bind "n" { GoToNextTab; SwitchToMode "Locked"; }
-        bind "p" { GoToPreviousTab; SwitchToMode "Locked"; }
-        bind "," { SwitchToMode "RenameTab"; TabNameInput 0; }
-
-        // Tab by number
-        bind "1" { GoToTab 1; SwitchToMode "Locked"; }
-        bind "2" { GoToTab 2; SwitchToMode "Locked"; }
-        bind "3" { GoToTab 3; SwitchToMode "Locked"; }
-        bind "4" { GoToTab 4; SwitchToMode "Locked"; }
-        bind "5" { GoToTab 5; SwitchToMode "Locked"; }
-        bind "6" { GoToTab 6; SwitchToMode "Locked"; }
-        bind "7" { GoToTab 7; SwitchToMode "Locked"; }
-        bind "8" { GoToTab 8; SwitchToMode "Locked"; }
-        bind "9" { GoToTab 9; SwitchToMode "Locked"; }
-
-        // Pane navigation (same as tmux prefix+hjkl)
-        bind "h" { MoveFocus "Left"; SwitchToMode "Locked"; }
-        bind "j" { MoveFocus "Down"; SwitchToMode "Locked"; }
-        bind "k" { MoveFocus "Up"; SwitchToMode "Locked"; }
-        bind "l" { MoveFocus "Right"; SwitchToMode "Locked"; }
-
-        // Pane management
-        bind "x" { CloseFocus; SwitchToMode "Locked"; }
-        bind "z" { ToggleFocusFullscreen; SwitchToMode "Locked"; }
-        bind "S" { ToggleActiveSyncTab; SwitchToMode "Locked"; }
-        bind "Space" { NextSwapLayout; SwitchToMode "Locked"; }
-
-        // Scrollback (same as tmux prefix+[)
-        bind "[" { SwitchToMode "Scroll"; }
-
-        // Session
-        bind "d" { Detach; }
-        bind "w" {
-            LaunchOrFocusPlugin "session-manager" {
-                floating true
-                move_to_focused_tab true
-            };
-            SwitchToMode "Locked";
-        }
-
-        // Escape vim terminal mode
-        bind "V" { Write 28; Write 14; SwitchToMode "Locked"; } // C-\ C-n
-    }
-
-    // Pane nav without prefix (same as tmux bind -n)
-    shared_among "normal" "locked" {
-        bind "Ctrl b" { SwitchToMode "Tmux"; }
+keybinds {
+    normal {
         bind "Ctrl h" { MoveFocus "Left"; }
         bind "Ctrl j" { MoveFocus "Down"; }
         bind "Ctrl k" { MoveFocus "Up"; }
@@ -84,36 +30,12 @@ keybinds clear-defaults=true {
         bind "Ctrl p" { GoToPreviousTab; }
     }
 
-    scroll {
-        bind "j" "Down" { ScrollDown; }
-        bind "k" "Up" { ScrollUp; }
-        bind "d" { HalfPageScrollDown; }
-        bind "u" { HalfPageScrollUp; }
-        bind "G" { ScrollToBottom; }
-        bind "g" { ScrollToTop; }
-        bind "e" { EditScrollback; SwitchToMode "Locked"; }
-        bind "/" { SwitchToMode "EnterSearch"; SearchInput 0; }
-        bind "Esc" "q" { ScrollToBottom; SwitchToMode "Locked"; }
-    }
-
-    entersearch {
-        bind "Enter" { SwitchToMode "Search"; }
-        bind "Esc" { SwitchToMode "Scroll"; }
-    }
-
-    search {
-        bind "j" "Down" { ScrollDown; }
-        bind "k" "Up" { ScrollUp; }
-        bind "d" { HalfPageScrollDown; }
-        bind "u" { HalfPageScrollUp; }
-        bind "n" { Search "down"; }
-        bind "N" { Search "up"; }
-        bind "c" { SearchToggleOption "CaseSensitivity"; }
-        bind "Esc" "q" { ScrollToBottom; SwitchToMode "Locked"; }
-    }
-
-    renametab {
-        bind "Esc" { UndoRenameTab; SwitchToMode "Locked"; }
-        bind "Ctrl c" { SwitchToMode "Locked"; }
+    // When locked (inside nvim), pass through Ctrl+h/j/k/l to nvim
+    // but allow unlocking with the default unlock key
+    locked {
+        bind "Ctrl h" { MoveFocus "Left"; }
+        bind "Ctrl j" { MoveFocus "Down"; }
+        bind "Ctrl k" { MoveFocus "Up"; }
+        bind "Ctrl l" { MoveFocus "Right"; }
     }
 }
